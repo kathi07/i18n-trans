@@ -2,7 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import I18Next from './i18n'
 import * as serviceWorker from './serviceWorker';
+// import { useTranslation } from 'react-i18next';
+
+// const { t, i18n } = useTranslation()
+// console.log(t, i18n)
 
 ReactDOM.render(
   <React.StrictMode>
