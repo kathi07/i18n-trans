@@ -3,10 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@babel/core": "^7.9.6",
-    "@babel/plugin-transform-react-jsx": "^7.9.4",
-    "@babel/preset-env": "^7.9.6",
-    "@babel/register": "^7.9.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
