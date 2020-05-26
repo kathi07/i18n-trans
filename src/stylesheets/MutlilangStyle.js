@@ -17,4 +17,5 @@
     border: 1px solid #ccc;
     display: table-cell;
     padding: 10px 0px;
+    min-width: 100px;
  `;
