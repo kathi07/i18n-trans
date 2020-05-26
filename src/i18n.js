@@ -47,8 +47,6 @@ const resources = {
     }
   };
   
-  
-
 
 i18n
     .use(LanguageDetector)

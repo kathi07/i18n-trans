@@ -10,11 +10,13 @@
     "express": "^4.17.1",
     "i18next": "^19.4.4",
     "i18next-browser-languagedetector": "^4.2.0",
+    "path": "^0.12.7",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
     "react-i18next": "^11.4.0",
     "react-scripts": "3.4.1",
+    "react-table": "^7.1.0",
     "styled-components": "^5.1.0"
   },
   "scripts": {

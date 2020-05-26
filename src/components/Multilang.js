@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { withTranslation, Translation, useTranslation } from 'react-i18next';
 import styled from 'styled-components'
 import bootstrap from 'react-bootstrap'
+import table from 'react-bootstrap/table'
+
+
 import {
     Table,
     TableData,
@@ -14,92 +17,77 @@ class Multilang extends Component {
     constructor(props) {
         console.log(props);
         super(props)
-        // this.state = {
-        //     t: props.t,            
-        //     i18n: props.i18n
-        // }
-        // debugger;
-        // console.log(Translation)
-        // console.log(useTranslation)
+        this.state = {
+            //     t: props.t,            
+            //     i18n: props.i18n
+            // }
+            // debugger;
+            // console.log(Translation)
+            // console.log(useTranslation)
+            langs: [],
+            keys: [],
+            i18n : props.i18n
+        }
     }
 
+    getHeader(value) {
+        return <TableHead>{value}</TableHead>
+    }
+    getCell(value) {
+        return <TableData>{value}</TableData>
+    }
+
+    getTRs(key, index) {
+        let tds = []
+        debugger;
+        this.state.langs.map(lang => {
+            tds.push(this.getCell(this.state.i18n.getDataByLanguage(lang).translation[key]))
+        })
+        return <tr>
+            {this.getCell(index + 1)}
+            {this.getCell(key)}
+            {tds}
+        </tr>
+    }
+
+
+
     render() {
-        const t = this.props.t;
-        const i = this.props.i18n;
-       
+
+        // const { langs, keys } = this.state;
+        const langs = Object.keys(this.state.i18n.store.data);
+        let keys = []
+        // This is to get all the unique keys into array
+        langs.map(lang => {
+            keys = keys.concat(Object.keys(this.state.i18n.store.data[lang].translation).filter((item) => keys.indexOf(item) < 0))
+        });
+
+        this.state.langs = langs;
+        this.state.keys = keys;
+
+        let ths = []
+        this.state.langs.map(lang => {
+            ths.push(this.getHeader(lang))
+        })
+
+        let trs = []
+        this.state.keys.map((key, index) => {
+            trs.push(this.getTRs(key, index))
+        })
+
         return (
-            <div>
+            <div class="table-responsive">
                 <h1>List of Languages</h1>
-                <Table bordered>
+                <Table class="table">
                     <thead>
                         <tr>
                             <TableHead>#</TableHead>
                             <TableHead>Key</TableHead>
-                            <TableHead>Value</TableHead>
-                            <TableHead>Language</TableHead>
+                            {ths}
                         </tr>
                     </thead>
-                    <tbody>                        
-                        <tr>
-                            <TableData>1</TableData>
-                            <TableData>title</TableData>
-                            <TableData>{i.getDataByLanguage("en").translation["title"]}</TableData>
-                            <TableData>EN</TableData>
-                        </tr>
-                        <tr>
-                            <TableData>2</TableData>
-                            <TableData>title</TableData>
-                            <TableData>{i.getDataByLanguage("ch").translation["title"]}</TableData>
-                            <TableData>CH</TableData>
-                        </tr>                       
-                        <tr>
-                            <TableData>3</TableData>
-                            <TableData>title</TableData>
-                            <TableData>{i.getDataByLanguage("du").translation["title"]}</TableData>
-                            <TableData>Dutch</TableData>
-                        </tr>
-                        <tr>
-                            <TableData>4</TableData>
-                            <TableData>title</TableData>
-                            <TableData>{i.getDataByLanguage("fr").translation["title"]}</TableData>
-                            <TableData>France</TableData>
-                        </tr>
-                        <tr>
-                            <TableData>5</TableData>
-                            <TableData>title</TableData>
-                            <TableData>{i.getDataByLanguage("de").translation["title"]}</TableData>
-                            <TableData>German</TableData>
-                        </tr>
-                        <tr>
-                            <TableData>6</TableData>
-                            <TableData>title</TableData>
-                            <TableData>{i.getDataByLanguage("it").translation["title"]}</TableData>
-                            <TableData>Italian</TableData>
-                        </tr>
-                        <tr>
-                            <TableData>7</TableData>
-                            <TableData>title</TableData>
-                            <TableData>{i.getDataByLanguage("ru").translation["title"]}</TableData>
-                            <TableData>Russian</TableData>
-                        </tr>
-                        <tr>
-                            <TableData>8</TableData>
-                            <TableData>title</TableData>
-                            <TableData>{i.getDataByLanguage("jp").translation["title"]}</TableData>
-                            <TableData>Japanese</TableData>
-                        </tr>
-                        <tr>
-                            <TableData>9</TableData>
-                            <TableData>title</TableData>
-                            <TableData>{i.getDataByLanguage("latin").translation["title"]}</TableData>
-                            <TableData>Latin</TableData>
-                        </tr>
-                        <tr>
-                            <TableData>10</TableData>
-                            <TableData>title</TableData>
-                            <TableData>{i.getDataByLanguage("sp").translation["title"]}</TableData>
-                            <TableData>Spanish</TableData>
-                        </tr>
+                    <tbody>
+                        {trs}
                     </tbody>
                 </Table>
             </div>
