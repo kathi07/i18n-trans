@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { withTranslation, Translation, useTranslation } from 'react-i18next';
 import styled from 'styled-components'
 import bootstrap from 'react-bootstrap'
-import table from 'react-bootstrap/table'
 
 
 import {
