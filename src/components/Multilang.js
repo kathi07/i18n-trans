@@ -38,7 +38,7 @@ class Multilang extends Component {
 
     getTRs(key, index) {
         let tds = []
-        debugger;
+        // debugger;
         this.state.langs.map(lang => {
             tds.push(this.getCell(this.state.i18n.getDataByLanguage(lang).translation[key]))
         })
@@ -76,8 +76,8 @@ class Multilang extends Component {
 
         return (
             <div class="table-responsive">
-                <h1>List of Languages</h1>
-                <Table class="table">
+                <h3>List of languages</h3>
+                <Table class="table table-hover">
                     <thead>
                         <tr>
                             <TableHead>#</TableHead>
